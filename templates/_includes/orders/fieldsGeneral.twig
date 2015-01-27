@@ -1,0 +1,45 @@
+{{ forms.textField({
+    label: "Order Number"|t,
+    id: 'orderNumber',
+    name: 'orderNumber',
+    first: true,
+    required: true,
+    errors: order.getErrors('orderNumber'),
+    value: order.orderNumber
+}) }}
+{% if not isNewOrder %}
+    {{ forms.dateField({
+        label: "Create Date"|t,
+        id: 'dateCreated',
+        name: 'dateCreated',
+        required: true,
+        errors: order.getErrors('dateCreated'),
+        value: order.dateCreated
+    }) }}
+{% endif %}
+{{ forms.selectField({
+    label: "Order Status"|t,
+    id: 'status',
+    name: 'status',
+    class: 'fullwidth',
+    required: true,
+    errors: order.getErrors('status'),
+    options: order.getStatuses(),
+    value: (isNewOrder ? order.getDefaultStatus() : order.status)
+}) }}
+{{ forms.textField({
+    label: "Delivery Type"|t,
+    id: 'deliveryType',
+    name: 'deliveryType',
+    required: true,
+    errors: order.getErrors('deliveryType'),
+    value: order.deliveryType
+}) }}
+{{ forms.textField({
+    label: "Total Price"|t,
+    id: 'totalPrice',
+    name: 'totalPrice',
+    required: true,
+    errors: order.getErrors('totalPrice'),
+    value: order.totalPrice
+}) }}

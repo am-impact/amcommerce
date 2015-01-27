@@ -1,0 +1,36 @@
+<form>
+    {{ forms.textField({
+        label: "Order Number"|t,
+        id: 'orderNumber',
+        name: 'orderNumber',
+        first: true
+    }) }}
+    <div class="grid" data-cols="2" data-mode="pct">
+        <div class="item first" data-colspan="1">
+            {{ forms.dateField({
+                label: "From Date"|t,
+                id: 'fromDate',
+                name: 'fromDate'
+            }) }}
+        </div>
+        <div class="item" data-colspan="1">
+            {{ forms.dateField({
+                label: "Till Date"|t,
+                id: 'tillDate',
+                name: 'tillDate'
+            }) }}
+        </div>
+    </div>
+    {{ forms.selectField({
+        label: "Order Status"|t,
+        id: 'status',
+        name: 'status',
+        class: 'fullwidth',
+        options: elementType.getStatuses()
+    }) }}
+    <hr>
+    <div class="buttons">
+        <div class="btn submit">{{ 'Search'|t }}</div>
+        <input class="btn" type="reset" value="{{ 'Reset'|t }}">
+    </div>
+</form>

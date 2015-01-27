@@ -1,0 +1,70 @@
+{{ forms.textField({
+    label: "Company Name"|t,
+    id: 'invoiceCompanyName',
+    name: 'invoiceCompanyName',
+    first: true,
+    errors: order.getErrors('invoiceCompanyName'),
+    value: order.invoiceCompanyName
+}) }}
+<div class="grid" data-cols="2" data-mode="pct">
+    <div class="item first" data-colspan="1">
+        {{ forms.textField({
+            label: "First Name"|t,
+            id: 'invoiceFirstName',
+            name: 'invoiceFirstName',
+            required: true,
+            errors: order.getErrors('invoiceFirstName'),
+            value: order.invoiceFirstName
+        }) }}
+    </div>
+    <div class="item" data-colspan="1">
+        {{ forms.textField({
+            label: "Last Name"|t,
+            id: 'invoiceLastName',
+            name: 'invoiceLastName',
+            required: true,
+            errors: order.getErrors('invoiceLastName'),
+            value: order.invoiceLastName
+        }) }}
+    </div>
+</div>
+<div class="grid" data-cols="3" data-mode="pct">
+    <div class="item first" data-colspan="1">
+        {{ forms.textField({
+            label: "Address"|t,
+            id: 'invoiceAddress',
+            name: 'invoiceAddress',
+            required: true,
+            errors: order.getErrors('invoiceAddress'),
+            value: order.invoiceAddress
+        }) }}
+    </div>
+    <div class="item" data-colspan="1">
+        {{ forms.textField({
+            label: "Zip Code"|t,
+            id: 'invoiceZipCode',
+            name: 'invoiceZipCode',
+            required: true,
+            errors: order.getErrors('invoiceZipCode'),
+            value: order.invoiceZipCode
+        }) }}
+    </div>
+    <div class="item" data-colspan="1">
+        {{ forms.textField({
+            label: "City"|t,
+            id: 'invoiceCity',
+            name: 'invoiceCity',
+            required: true,
+            errors: order.getErrors('invoiceCity'),
+            value: order.invoiceCity
+        }) }}
+    </div>
+</div>
+{{ forms.textField({
+    label: "Country"|t,
+    id: 'invoiceCountry',
+    name: 'invoiceCountry',
+    required: true,
+    errors: order.getErrors('invoiceCountry'),
+    value: order.deliveryCountry
+}) }}

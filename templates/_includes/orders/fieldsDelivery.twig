@@ -1,0 +1,70 @@
+{{ forms.textField({
+    label: "Company Name"|t,
+    id: 'deliveryCompanyName',
+    name: 'deliveryCompanyName',
+    first: true,
+    errors: order.getErrors('deliveryCompanyName'),
+    value: order.deliveryCompanyName
+}) }}
+<div class="grid" data-cols="2" data-mode="pct">
+    <div class="item first" data-colspan="1">
+        {{ forms.textField({
+            label: "First Name"|t,
+            id: 'deliveryFirstName',
+            name: 'deliveryFirstName',
+            required: true,
+            errors: order.getErrors('deliveryFirstName'),
+            value: order.deliveryFirstName
+        }) }}
+    </div>
+    <div class="item" data-colspan="1">
+        {{ forms.textField({
+            label: "Last Name"|t,
+            id: 'deliveryLastName',
+            name: 'deliveryLastName',
+            required: true,
+            errors: order.getErrors('deliveryLastName'),
+            value: order.deliveryLastName
+        }) }}
+    </div>
+</div>
+<div class="grid" data-cols="3" data-mode="pct">
+    <div class="item first" data-colspan="1">
+        {{ forms.textField({
+            label: "Address"|t,
+            id: 'deliveryAddress',
+            name: 'deliveryAddress',
+            required: true,
+            errors: order.getErrors('deliveryAddress'),
+            value: order.deliveryAddress
+        }) }}
+    </div>
+    <div class="item" data-colspan="1">
+        {{ forms.textField({
+            label: "Zip Code"|t,
+            id: 'deliveryZipCode',
+            name: 'deliveryZipCode',
+            required: true,
+            errors: order.getErrors('deliveryZipCode'),
+            value: order.deliveryZipCode
+        }) }}
+    </div>
+    <div class="item" data-colspan="1">
+        {{ forms.textField({
+            label: "City"|t,
+            id: 'deliveryCity',
+            name: 'deliveryCity',
+            required: true,
+            errors: order.getErrors('deliveryCity'),
+            value: order.deliveryCity
+        }) }}
+    </div>
+</div>
+{{ forms.textField({
+    label: "Country"|t,
+    id: 'deliveryCountry',
+    name: 'deliveryCountry',
+    required: true,
+    errors: order.getErrors('deliveryCountry'),
+    value: order.deliveryCountry
+}) }}

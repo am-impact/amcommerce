@@ -1,0 +1,24 @@
+{% set orders = craft.amCommerce.getOrders() %}
+{% set statuses = elementType.getStatuses() %}
+
+<table id="orders" class="data fullwidth">
+    <thead>
+        <tr>
+            <th scope="col" data-attribute="title">{{ 'Create Date'|t }}</th>
+            <th scope="col" data-attribute="uri">{{ 'Number'|t }}</th>
+            <th scope="col" data-attribute="editDate">{{ 'Order Status'|t }}</th>
+            {# <th scope="col" data-attribute="paymentStatus">{{ 'Payment Status'|t }}</th> #}
+            <th scope="col" data-attribute="actions">{{ 'Total Price'|t }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+            <tr data-id="{{ order.id }}" data-name="{{ order.orderNumber }}">
+                <td>{{ order.dateCreated|date('d-m-Y') }}</td>
+                <td><a href="{{ url('amcommerce/orders/edit/' ~ order.id) }}">{{ order.orderNumber }}</a></td>
+                <td>{{ statuses[order.status] }}</td>
+                <td>{{ order.totalPrice|number_format(2, ',', '') }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
