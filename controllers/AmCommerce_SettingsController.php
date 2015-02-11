@@ -15,6 +15,9 @@ class AmCommerce_SettingsController extends BaseController
         $this->renderTemplate('amCommerce/settings/_index', $variables);
     }
 
+    /**
+     * Show payment gateways' settings.
+     */
     public function actionPaymentGateways()
     {
         $variables = array(
