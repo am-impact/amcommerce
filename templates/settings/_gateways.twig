@@ -1,0 +1,56 @@
+{% extends "_layouts/cp" %}
+
+{% import "_includes/forms" as forms %}
+
+{% set title = 'Payment Gateways'|t %}
+{% set pluginTitle = craft.amCommerce.name %}
+
+{% set crumbs = [
+    { label: pluginTitle, url: url('amcommerce') },
+    { label: 'Settings'|t, url: url('amcommerce/settings') },
+    { label: title, url: '#' }
+] %}
+
+{% set tabs = {
+  general: { label: 'General'|t, url: url('amcommerce/settings') },
+  paymentGateways: { label: 'Payment Gateways'|t, url: url('amcommerce/settings/gateways') }
+} %}
+{% set selectedTab = 'paymentGateways' %}
+
+{% set content %}
+    <form id="settings-form" method="post" accept-charset="UTF-8" data-saveshortcut>
+        {{ getCsrfInput() }}
+        <input type="hidden" name="action" value="amCommerce/settings/savePaymentGateways">
+
+        <div class="grid" data-cols="4" data-mode="pct">
+            {% for gateway in gateways %}
+                <div class="item" data-colspan="1">
+                    <div class="pane">
+                        <h3>{{ gateway.name }}</h3>
+                        {% for settingName, settingValue in gateway.settings %}
+                            {% if settingName == 'testMode' %}
+                                {{ forms.lightswitchField({
+                                    label: settingName,
+                                    id: settingName,
+                                    name: gateway.handle ~ '[' ~ settingName ~ ']',
+                                    on: settingValue
+                                }) }}
+                            {% else %}
+                                {{ forms.textField({
+                                    label: settingName,
+                                    id: settingName,
+                                    name: gateway.handle ~ '[' ~ settingName ~ ']',
+                                    value: settingValue
+                                }) }}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <hr>
+        <div class="buttons">
+            <input type="submit" class="btn submit" value="{{ 'Save'|t }}">
+        </div>
+    </form>
+{% endset %}

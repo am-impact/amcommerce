@@ -1,0 +1,9 @@
+{
+    "require": {
+        "omnipay/buckaroo": "~2.0",
+        "omnipay/dummy": "~2.0",
+        "omnipay/mollie": "~2.0",
+        "omnipay/paypal": "~2.0",
+        "omnipay/rabobank": "~2.0"
+    }
+}

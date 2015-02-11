@@ -1,0 +1,19 @@
+{% extends "_layouts/cp" %}
+
+{% set title = 'Settings'|t %}
+{% set pluginTitle = craft.amCommerce.name %}
+
+{% set crumbs = [
+    { label: pluginTitle, url: url('amcommerce') },
+    { label: title, url: '#' }
+] %}
+
+{% set tabs = {
+  general: { label: 'General'|t, url: url('amcommerce/settings') },
+  paymentGateways: { label: 'Payment Gateways'|t, url: url('amcommerce/settings/gateways') }
+} %}
+{% set selectedTab = 'general' %}
+
+{% set content %}
+    Algemeen
+{% endset %}

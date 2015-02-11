@@ -7,6 +7,8 @@
  */
 namespace Craft;
 
+require_once(CRAFT_PLUGINS_PATH . 'amcommerce/vendor/autoload.php');
+
 class AmCommercePlugin extends BasePlugin
 {
     public function getName()
@@ -64,7 +66,22 @@ class AmCommercePlugin extends BasePlugin
             'amcommerce/orders/edit/(?P<orderId>\d+)' => array(
                 'action' => 'amCommerce/orders/editOrder'
             ),
+
+            'amcommerce/settings' => array(
+                'action' => 'amCommerce/settings/index'
+            ),
+            'amcommerce/settings/gateways' => array(
+                'action' => 'amCommerce/settings/paymentGateways'
+            ),
         );
+    }
+
+    /**
+     * Install essential information after installing the plugin.
+     */
+    public function onAfterInstall()
+    {
+        craft()->amCommerce_install->install();
     }
 
     public function getSettingsHtml()

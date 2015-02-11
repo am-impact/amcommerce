@@ -7,7 +7,7 @@ namespace Craft;
 class AmCommerce_OrdersController extends BaseController
 {
     /**
-     * Orders index
+     * Orders index.
      */
     public function actionIndex()
     {

@@ -11,4 +11,7 @@ class AmCommerceModel extends BaseModel
     const StatusFinished = 'finished';
     const StatusPaid  = 'paid';
     const StatusPending = 'pending';
+
+    // Setting types
+    const SettingPaymentGateway = 'paymentGateway';
 }
