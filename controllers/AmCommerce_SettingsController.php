@@ -41,9 +41,10 @@ class AmCommerce_SettingsController extends BaseController
         // Save settings for each payment gateway
         foreach ($paymentGateways as $paymentGateway) {
             // Find new settings
-            $newSettings = craft()->request->getPost($paymentGateway->handle, false);
+            $newSettings = craft()->request->getPost($paymentGateway->handle . '_settings', false);
             if ($newSettings) {
                 $paymentGateway->settings = $newSettings;
+                $paymentGateway->enabled = craft()->request->getPost($paymentGateway->handle . '_enabled', false);
                 if(! craft()->amCommerce_settings->saveSettings($paymentGateway)) {
                     $success = false;
                 }

@@ -32,5 +32,6 @@ return array(
     'Settings saved.' => 'Instellingen opgeslagen.',
     'Telephone Number' => 'Telefoonnummer',
     'Total Price' => 'Totaalbedrag',
+    'Whether this gateway should be activated.' => 'Of deze gateway geactiveerd moet zijn.',
     'Zip Code' => 'Postcode'
 );

@@ -11,6 +11,7 @@ class AmCommerce_SettingRecord extends BaseRecord
     protected function defineAttributes()
     {
         return array(
+            'enabled'  => array(AttributeType::Bool, 'required' => true, 'default' => false),
             'type'     => array(AttributeType::String, 'required' => true),
             'name'     => array(AttributeType::String, 'required' => true),
             'handle'   => array(AttributeType::String, 'required' => true),

@@ -27,19 +27,27 @@
                 <div class="item" data-colspan="1">
                     <div class="pane">
                         <h3>{{ gateway.name }}</h3>
+                        {{ forms.lightswitchField({
+                            label: 'Enabled'|t,
+                            id: 'enabled',
+                            name: gateway.handle ~ '_enabled',
+                            on: gateway.enabled,
+                            instructions: 'Whether this gateway should be activated.'|t
+                        }) }}
+                        <hr>
                         {% for settingName, settingValue in gateway.settings %}
                             {% if settingName == 'testMode' %}
                                 {{ forms.lightswitchField({
                                     label: settingName,
                                     id: settingName,
-                                    name: gateway.handle ~ '[' ~ settingName ~ ']',
+                                    name: gateway.handle ~ '_settings[' ~ settingName ~ ']',
                                     on: settingValue
                                 }) }}
                             {% else %}
                                 {{ forms.textField({
                                     label: settingName,
                                     id: settingName,
-                                    name: gateway.handle ~ '[' ~ settingName ~ ']',
+                                    name: gateway.handle ~ '_settings[' ~ settingName ~ ']',
                                     value: settingValue
                                 }) }}
                             {% endif %}

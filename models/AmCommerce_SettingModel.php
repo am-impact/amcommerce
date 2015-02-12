@@ -7,6 +7,7 @@ class AmCommerce_SettingModel extends BaseModel
     {
         return array(
             'id'       => AttributeType::Number,
+            'enabled'  => AttributeType::Bool,
             'type'     => AttributeType::String,
             'name'     => AttributeType::String,
             'handle'   => AttributeType::String,
