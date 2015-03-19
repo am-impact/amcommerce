@@ -11,7 +11,9 @@ class AmCommerce_OrdersController extends BaseController
      */
     public function actionIndex()
     {
-        $variables = array();
+        $variables = array(
+            'elementType' => AmCommerceModel::OrderElementType
+        );
         $this->renderTemplate('amCommerce/orders/_index', $variables);
     }
 
@@ -42,6 +44,13 @@ class AmCommerce_OrdersController extends BaseController
         // Set the "Continue Editing" URL
         $variables['continueEditingUrl'] = 'amcommerce/orders/edit/{id}';
 
+        // Customer element type
+        $variables['customerElementType'] = craft()->elements->getElementType(ElementType::User);
+        $variables['selectedCustomer'] = null;
+        if ($variables['order']->customerId) {
+            $variables['selectedCustomer'] = craft()->users->getUserById($variables['order']->customerId);
+        }
+
         $this->renderTemplate('amCommerce/orders/_edit', $variables);
     }
 
@@ -66,6 +75,7 @@ class AmCommerce_OrdersController extends BaseController
         }
 
         // Set order attributes
+        $order->customerId          = craft()->request->getPost('customerId', $order->customerId);
         $order->status              = craft()->request->getPost('status', $order->status);
         $order->orderNumber         = craft()->request->getPost('orderNumber', $order->orderNumber);
         $order->totalPrice          = craft()->request->getPost('totalPrice', $order->totalPrice);

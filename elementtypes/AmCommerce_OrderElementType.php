@@ -70,14 +70,18 @@ class AmCommerce_OrderElementType extends BaseElementType
      */
     public function getSources($context = null)
     {
-        $sources = array();
+        $sources = array(
+            '*' => array(
+                'label' => Craft::t('All Statuses'),
+            )
+        );
 
         foreach ($this->getStatuses() as $keySource => $status)
         {
             $key = 'status:'.$keySource;
             $sources[$key] = array(
                 'label'    => $status,
-                'criteria' => array('status' => $status)
+                'criteria' => array('status' => $keySource)
             );
         }
         return $sources;
@@ -90,8 +94,20 @@ class AmCommerce_OrderElementType extends BaseElementType
      */
     public function defineSortableAttributes()
     {
-        $attributes = array();
+        $attributes = array(
+            'orderNumber' => Craft::t('Order Number')
+        );
         return $attributes;
+    }
+
+    /**
+     * Return searchable attributes.
+     *
+     * @return array
+     */
+    public function defineSearchableAttributes()
+    {
+        return array('orderNumber');
     }
 
     /**
@@ -104,7 +120,45 @@ class AmCommerce_OrderElementType extends BaseElementType
     public function defineTableAttributes($source = null)
     {
         return array(
-            'title' => Craft::t('Title')
+            'orderNumber' => Craft::t('Order Number'),
+            'dateCreated' => Craft::t('Create Date'),
+            'totalPrice' => Craft::t('Total Price')
+        );
+    }
+
+    /**
+     * @inheritDoc IElementType::getTableAttributeHtml()
+     *
+     * @param BaseElementModel $element
+     * @param string           $attribute
+     *
+     * @return string
+     */
+    public function getTableAttributeHtml(BaseElementModel $element, $attribute)
+    {
+        switch ($attribute)
+        {
+            case 'dateCreated':
+            {
+                return $element->dateCreated->localeDate();
+            }
+
+            default:
+            {
+                return parent::getTableAttributeHtml($element, $attribute);
+            }
+        }
+    }
+
+    /**
+     * Defines any custom element criteria attributes for this element type.
+     *
+     * @return array
+     */
+    public function defineCriteriaAttributes()
+    {
+        return array(
+            'status' => AttributeType::String
         );
     }
 
@@ -121,6 +175,10 @@ class AmCommerce_OrderElementType extends BaseElementType
         $query
         ->addSelect('orders.*')
         ->join(AmCommerce_OrderRecord::getTableName() . ' orders', 'orders.id = elements.id');
+
+        if (!empty($criteria->status)) {
+            $query->andWhere(DbHelper::parseParam('orders.status', $criteria->status, $query->params));
+        }
     }
 
     /**

@@ -38,7 +38,8 @@ class AmCommerce_OrderRecord extends BaseRecord
     public function defineRelations()
     {
         return array(
-            'element' => array(static::BELONGS_TO, 'ElementRecord', 'id', 'required' => true, 'onDelete' => static::CASCADE)
+            'element' => array(static::BELONGS_TO, 'ElementRecord', 'id', 'required' => true, 'onDelete' => static::CASCADE),
+            'customer' => array(static::BELONGS_TO, 'UserRecord', 'required' => true, 'onDelete' => static::CASCADE)
         );
     }
 }

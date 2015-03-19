@@ -17,18 +17,8 @@
         <input type="hidden" name="action" value="amCommerce/orders/saveOrder">
         {% if orderId is defined %}<input type="hidden" name="orderId" value="{{ orderId }}">{% endif %}
 
-        <div class="grid first" data-cols="2" data-mode="pct">
-            <div class="item first" data-colspan="1">
-                <div id="settings" class="pane">
-                    {% include 'amcommerce/_includes/orders/fieldsGeneral' %}
-
-                    <div class="buttons">
-                        <input type="submit" class="btn submit" value="{{ 'Save'|t }}">
-                    </div>
-                </div>
-            </div>
-
-            <div class="item" data-colspan="1">
+        <div class="grid first">
+            <div class="item first" data-position="left" data-min-colspan="2" data-max-colspan="3">
                 <div class="pane">
                     {% set paneTabs = {
                         contact: { label: "Contact Information"|t, url: '#amcommerce-contact' },
@@ -45,6 +35,16 @@
                     </div>
                     <div id="amcommerce-invoice" class="hidden">
                         {% include 'amcommerce/_includes/orders/fieldsInvoice' %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="item" data-position="right" data-colspan="1">
+                <div id="settings" class="pane">
+                    {% include 'amcommerce/_includes/orders/fieldsGeneral' %}
+
+                    <div class="buttons">
+                        <input type="submit" class="btn submit" value="{{ 'Save'|t }}">
                     </div>
                 </div>
             </div>

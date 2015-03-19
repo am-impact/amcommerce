@@ -6,6 +6,16 @@ class AmCommerce_OrderModel extends BaseElementModel
     protected $elementType = AmCommerceModel::OrderElementType;
 
     /**
+     * Since our Element Type has no title, overwrite the first column on the index page.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->orderNumber;
+    }
+
+    /**
      * Returns whether the current user can edit the element.
      *
      * @return bool
@@ -55,6 +65,7 @@ class AmCommerce_OrderModel extends BaseElementModel
     {
         return array_merge(parent::defineAttributes(), array(
             'id'                    => AttributeType::Number,
+            'customerId'            => AttributeType::Number,
             'status'                => AttributeType::String,
             'orderNumber'           => AttributeType::Number,
             'totalPrice'            => AttributeType::Number,

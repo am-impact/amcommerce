@@ -1,3 +1,15 @@
+{{ forms.elementSelectField({
+    label: 'Customer'|t,
+    id: 'customerId',
+    name: 'customerId',
+    elementType: customerElementType,
+    elements: [selectedCustomer],
+    jsClass: 'Craft.BaseElementSelectInput',
+    required: true,
+    errors: order.getErrors('customerId'),
+    addButtonLabel: 'Add Customer'|t,
+    limit: 1
+}) }}
 {{ forms.textField({
     label: "Order Number"|t,
     id: 'orderNumber',
@@ -7,16 +19,6 @@
     errors: order.getErrors('orderNumber'),
     value: order.orderNumber
 }) }}
-{% if not isNewOrder %}
-    {{ forms.dateField({
-        label: "Create Date"|t,
-        id: 'dateCreated',
-        name: 'dateCreated',
-        required: true,
-        errors: order.getErrors('dateCreated'),
-        value: order.dateCreated
-    }) }}
-{% endif %}
 {{ forms.selectField({
     label: "Order Status"|t,
     id: 'status',
@@ -43,3 +45,13 @@
     errors: order.getErrors('totalPrice'),
     value: order.totalPrice
 }) }}
+{% if not isNewOrder %}
+    {{ forms.dateField({
+        label: "Create Date"|t,
+        id: 'dateCreated',
+        name: 'dateCreated',
+        required: true,
+        errors: order.getErrors('dateCreated'),
+        value: order.dateCreated
+    }) }}
+{% endif %}

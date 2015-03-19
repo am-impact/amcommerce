@@ -1,5 +1,7 @@
 <?php
 return array(
+    'Add Customer' => 'Klant toevoegen',
+    'All Statuses' => 'Alle statussen',
     'Address' => 'Adres',
     'Cancelled' => 'Geannuleerd',
     'City' => 'Plaats',
@@ -9,6 +11,7 @@ return array(
     'Couldn’t save settings.' => 'Kon de instellingen niet opslaan.',
     'Country' => 'Land',
     'Create Date' => 'Aanmaakdatum',
+    'Customer' => 'Klant',
     'Delivery Address' => 'Afleveradres',
     'Delivery Type' => 'Verzendwijze',
     'Edit Order' => 'Bestelling wijzigen',

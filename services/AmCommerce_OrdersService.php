@@ -55,6 +55,7 @@ class AmCommerce_OrdersService extends BaseApplicationComponent
         }
 
         // Set attributes
+        $orderRecord->customerId          = $order->customerId;
         $orderRecord->status              = $order->status;
         $orderRecord->orderNumber         = $order->orderNumber;
         $orderRecord->totalPrice          = $order->totalPrice;

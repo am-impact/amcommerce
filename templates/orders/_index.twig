@@ -1,6 +1,4 @@
-{% extends "_layouts/cp" %}
-
-{% import "_includes/forms" as forms %}
+{% extends "_layouts/elementindex" %}
 
 {% set title = 'Orders'|t %}
 {% set pluginTitle = craft.amCommerce.name %}
@@ -10,27 +8,10 @@
     { label: title, url: '#' }
 ] %}
 
-{% set elementTypeClass = 'AmCommerce_Order' %}
-{% set elementType = craft.elements.getElementType(elementTypeClass) %}
-{% set context = 'index' %}
-
-{% if not elementType %}
-    {% exit 404 %}
-{% endif %}
-
-{% block main %}
-    <div class="grid first" data-cols="4" data-mode="pct">
-        <div class="item first" data-colspan="1">
-            <div class="pane">
-                <h1>{{ 'Filter' }}</h1>
-                {% include 'amcommerce/_includes/orders/fieldsFilter' %}
-            </div>
-        </div>
-        <div class="item" data-colspan="3">
-            <div class="pane">
-                <h1>{{ 'Orders Overview' }}</h1>
-                {% include 'amcommerce/_includes/orders/overview' %}
-            </div>
-        </div>
+{% block sidebar %}
+    <div class="buttons">
+         <a class="btn submit add icon" href="{{ url('amcommerce/orders/new') }}">{{ "New Order"|t }}</a>
     </div>
+
+    {{ parent() }}
 {% endblock %}
