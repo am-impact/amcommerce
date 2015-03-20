@@ -77,6 +77,20 @@ class AmCommercePlugin extends BasePlugin
     }
 
     /**
+     * Plugin has user permissions.
+     *
+     * @return array
+     */
+    public function registerUserPermissions()
+    {
+        return array(
+            'editAmCommerceSettings'   => array(
+                'label' => Craft::t('Edit Settings')
+            )
+        );
+    }
+
+    /**
      * Install essential information after installing the plugin.
      */
     public function onAfterInstall()

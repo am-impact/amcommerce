@@ -1,1 +1,19 @@
-Test
+{% extends "_layouts/cp" %}
+
+{% set title = craft.amCommerce.name %}
+
+{% set tabs = {
+    general: { label: 'General'|t, url: url('amcommerce') },
+    orders: { label: 'Orders'|t, url: url('amcommerce/orders') }
+} %}
+{% set selectedTab = 'general' %}
+
+{% if currentUser.can('editAmCommerceSettings') %}
+    {% set extraPageHeaderHtml %}
+      <a class="btn settings icon" href="{{ url('amcommerce/settings') }}" title="{{ 'Settings'|t }}"></a>
+    {% endset %}
+{% endif %}
+
+{% set content %}
+    Widgets?
+{% endset %}

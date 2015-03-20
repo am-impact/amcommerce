@@ -10,13 +10,27 @@ class AmCommerce_SettingsService extends BaseApplicationComponent
      * Get all settings by their type.
      *
      * @param string $type
+     * @param bool   $enabled [Optional] Whether to include the enabled as search attribute.
      *
      * @return AmCommerce_SettingModel
      */
-    public function getAllSettingsByType($type)
+    public function getAllSettingsByType($type, $enabled = '*')
     {
-        $settingRecords = AmCommerce_SettingRecord::model()->ordered()->findAllByAttributes(array('type' => $type));
-        return AmCommerce_SettingModel::populateModels($settingRecords, 'id');
+        $attributes = array(
+            'type' => $type
+        );
+
+        // Include enabled attribute?
+        if ($enabled !== '*') {
+            $attributes['enabled'] = $enabled;
+        }
+
+        // Find records
+        $settingRecords = AmCommerce_SettingRecord::model()->ordered()->findAllByAttributes($attributes);
+        if ($settingRecords) {
+            return AmCommerce_SettingModel::populateModels($settingRecords, 'id');
+        }
+        return null;
     }
 
     /**

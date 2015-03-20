@@ -16,6 +16,16 @@ class AmCommerceVariable
     }
 
     /**
+     * Get all enabled payment gateways.
+     *
+     * @return array
+     */
+    public function getAvailablePaymentGateways()
+    {
+        return craft()->amCommerce_payments->getAvailablePaymentGateways();
+    }
+
+    /**
      * Get all orders.
      *
      * @return array
